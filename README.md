@@ -1,11 +1,14 @@
-<div align="center">
+# PlataformaCard
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+SaaS de cartões de visita online interativos com catálogo integrado de produtos/serviços.
 
-  <h1>Built with AI Studio</h2>
+## Stack
+- Next.js (App Router)
+- Supabase (PostgreSQL + RLS)
+- Deploy: Vercel
+- Repo: GitHub
 
-  <p>The fastest path from prompt to production with Gemini.</p>
-
-  <a href="https://aistudio.google.com/apps">Start building</a>
-
-</div>
+## Desenvolvimento local
+```bash
+npm install
+npm run dev
