@@ -31,11 +31,11 @@ const { data: profile, error: profileError } = await supabase
     redirect("/login");
   }
 
-const [summary, topProducts, productConversion] = await Promise.all([
+  const [summary, topProducts, productConversion] = await Promise.all([
   getAnalyticsSummary(profile.id),
   getTopProducts(profile.id, 5),
   getProductConversion(profile.id),
-]);
+]) as [any, any, any[]];
 
   const rateProfileToCatalog = pct(summary.catalogViews, summary.profileViews);
   const rateCatalogToProduct = pct(summary.productClicks, summary.catalogViews);
@@ -160,7 +160,7 @@ const [summary, topProducts, productConversion] = await Promise.all([
           </tr>
         </thead>
         <tbody>
-          productConversion.map((item: any) => (
+          {productConversion.map((item) => (
             <tr
               key={item.product_id}
               className="border-b last:border-none"
