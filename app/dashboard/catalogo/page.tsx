@@ -331,7 +331,7 @@ const { error } = await supabase.from("products").insert({
                     </h3>
 
                     <p className="mt-1 text-sm text-neutral-500">
-                      Categoria: {product.categories?.name ?? "Sem categoria"}
+                      Categoria: {Array.isArray(product.categories) ? product.categories[0]?.name ?? "Sem categoria" : product.categories?.name ?? "Sem categoria"}
                     </p>
 
                     <p className="mt-2 text-sm text-neutral-700">
