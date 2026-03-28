@@ -160,7 +160,7 @@ const [summary, topProducts, productConversion] = await Promise.all([
           </tr>
         </thead>
         <tbody>
-          {productConversion.map((item) => (
+          productConversion.map((item: any) => (
             <tr
               key={item.product_id}
               className="border-b last:border-none"
