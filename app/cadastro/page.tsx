@@ -18,8 +18,6 @@ function slugify(value: string) {
 
 export default function CadastroPage() {
   const router = useRouter();
-  const supabase = createClient();
-
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,6 +31,7 @@ export default function CadastroPage() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const supabase = createClient();
 
     setErrorMessage("");
 
