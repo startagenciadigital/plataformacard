@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
 import ProfileViewTracker from "@/components/analytics/ProfileViewTracker";
 import ProfileWhatsAppButton from "@/components/analytics/ProfileWhatsAppButton";
@@ -8,12 +8,9 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
 export default async function Page(props: PageProps) {
+  const supabase = await createClient();
+
   const { slug } = await props.params;
 
   const { data: profile } = await supabase
