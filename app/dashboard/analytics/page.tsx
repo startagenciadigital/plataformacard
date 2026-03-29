@@ -4,6 +4,8 @@ import { getAnalyticsSummary } from "@/lib/dashboard/getAnalyticsSummary";
 import { getTopProducts } from "@/lib/dashboard/getTopProducts";
 import { getProductConversion } from "@/lib/dashboard/getProductConversion";
 
+export const dynamic = "force-dynamic";
+
 function pct(n: number, d: number) {
   if (!d || d <= 0) return "0%";
   return `${Math.round((n / d) * 100)}%`;
