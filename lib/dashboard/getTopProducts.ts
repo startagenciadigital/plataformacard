@@ -1,4 +1,4 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@/lib/supabase/server";
 
 type TopProduct = {
   productId: string;
@@ -12,15 +12,12 @@ type TopProductRow = {
   clicks: number | string | null;
 };
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
 export async function getTopProducts(
   profileId: string,
   limit = 5
 ): Promise<TopProduct[]> {
+  const supabase = await createClient();
+
   const { data, error } = await supabase.rpc("get_top_products", {
     p_profile_id: profileId,
     p_limit: limit,

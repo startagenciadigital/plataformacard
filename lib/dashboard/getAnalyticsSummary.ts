@@ -1,4 +1,4 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@/lib/supabase/server";
 
 type AnalyticsSummary = {
   profileViews: number;
@@ -14,14 +14,11 @@ type AnalyticsSummaryRow = {
   conversations_started: number | string | null;
 };
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
 export async function getAnalyticsSummary(
   profileId: string
 ): Promise<AnalyticsSummary> {
+  const supabase = await createClient();
+
   const { data, error } = await supabase.rpc(
     "get_profile_analytics_summary",
     {
