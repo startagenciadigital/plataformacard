@@ -207,6 +207,7 @@ const { error } = await supabase
     // 1. pegar usuário logado
 const {
   data: { user },
+  const supabase = createClient();
 } = await supabase.auth.getUser();
 
 if (!user) {
