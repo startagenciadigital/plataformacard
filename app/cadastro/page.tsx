@@ -18,7 +18,7 @@ function slugify(value: string) {
 
 export default function CadastroPage() {
   const router = useRouter();
-  const supabase = useMemo(() => createClient(), []);
+  const supabase = createClient();
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
