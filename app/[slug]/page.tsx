@@ -16,19 +16,17 @@ export default async function Page(props: PageProps) {
 
   const { slug } = await props.params;
 
-  const reservedSlugs = [
-    "login",
-    "cadastro",
-    "dashboard",
-    "admin",
-    "auth",
-    "recuperar-senha",
-    "reset-senha",
-    "test",
-  ];
-
- if (reservedSlugs.includes(slug)) {
-  return null;
+  if (
+  slug === "login" ||
+  slug === "cadastro" ||
+  slug === "dashboard" ||
+  slug === "admin" ||
+  slug === "auth" ||
+  slug === "recuperar-senha" ||
+  slug === "reset-senha" ||
+  slug === "test"
+) {
+  notFound();
 }
 
   const { data: profile } = await supabase
