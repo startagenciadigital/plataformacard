@@ -28,7 +28,6 @@ type ProductRow = {
 };
 
 export default function CatalogoPage() {
-  const supabase = createClient();
 
   const [canCreateProduct, setCanCreateProduct] = useState<boolean | null>(null);
   const [loadingLimit, setLoadingLimit] = useState(true);
@@ -60,12 +59,14 @@ export default function CatalogoPage() {
   }, []);
 
   async function refreshLimit() {
+    const supabase = createClient();
     const { data } = await supabase.rpc("can_create_product");
     setCanCreateProduct(data);
     setLoadingLimit(false);
   }
 
   async function fetchCategories() {
+    const supabase = createClient();
     const { data, error } = await supabase
       .from("categories")
       .select("id, name")
@@ -80,9 +81,9 @@ export default function CatalogoPage() {
     setLoadingCategories(false);
   }
 
-  async function fetchProducts() 
-  {
-  setLoadingProducts(true);
+  async function fetchProducts() {
+  const supabase = createClient();
+    setLoadingProducts(true);
 
   // 1. pegar usuário logado
   const {
@@ -138,6 +139,7 @@ export default function CatalogoPage() {
   setLoadingProducts(false);
 }
 async function handleDelete(productId: string) {
+  const supabase = createClient();
   const confirmDelete = confirm("Tem certeza que deseja excluir este produto?");
 
   if (!confirmDelete) return;
@@ -157,6 +159,7 @@ const { error } = await supabase
   await fetchProducts();
 }
   function handleOpenCreateProduct() {
+    const supabase = createClient();
     if (!canCreateProduct) {
       alert("Você atingiu o limite do seu plano. Faça upgrade para continuar.");
       return;
