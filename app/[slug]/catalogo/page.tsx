@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@/lib/supabase/server";
 import ProductCatalogClient from "@/components/catalog/ProductCatalogClient";
 
 type PageProps = {
@@ -40,13 +40,12 @@ type Product = {
   sort_order: number | null;
 };
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+
 
 export default async function Page({ params }: PageProps) {
-  const { slug } = await params;
+  const supabase = await createClient();
+
+  const { slug } = params;
 
   const { data: profileData, error: profileError } = await supabase
     .from("profiles")
