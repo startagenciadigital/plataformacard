@@ -8,6 +8,9 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
+export const dynamicParams = true;
+export const revalidate = 0;
+
 export default async function Page(props: PageProps) {
   const supabase = await createClient();
 
@@ -24,9 +27,9 @@ export default async function Page(props: PageProps) {
     "test",
   ];
 
-  if (reservedSlugs.includes(slug)) {
-    notFound();
-  }
+ if (reservedSlugs.includes(slug)) {
+  return null;
+}
 
   const { data: profile } = await supabase
     .from("profiles")
